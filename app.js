@@ -4,6 +4,8 @@ var bodyParser = require('body-parser');
 var request = require('request');
 var routes = require('./routes');
 var app = module.exports = express.createServer();
+//var names = [];
+
 
 // Configuration
 app.configure(function(){
@@ -27,10 +29,11 @@ app.configure('production', function(){
 // Reimagine API 
 var API_KEY = '5694198d923e293641faeb5cfb3ab2de';
 var customerIDs = ['56c66be5a73e49274150738c', '56c66be5a73e49274150738d', '56c66be5a73e49274150738e'];
-var accountIDs = 
+//var accountIDs = 
 var host = 'http://api.reimaginebanking.com'
 
 var customers = [] // fields: _id, last_name, address:{city, street_name, zip, state, street_number} first_name
+var names = []
 var purchases = []
 
 request({
@@ -51,6 +54,14 @@ request({
 // Routes
 app.get('/', function(req, res){
 	res.render('index', customers = customers);
+});
+
+app.post('/login',function(req,res){
+  var firstname = req.body.first_name;
+  var lastname = req.body.last_name;
+  
+  console.log("First name = "+firstname+", Last name is "+lastname+");
+  res.end("yes");
 });
 
 app.listen(3000, function(){
