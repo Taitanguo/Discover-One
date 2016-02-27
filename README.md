@@ -29,4 +29,5 @@
 <p><b>BANKING</b>
 <b>ATM</b> location planning through consumer behavior data collection
 <b>Increase</b> in spending, <b>increase</b> local commerce, <b>increase</b> bank savings, <b>increase</b> business investments, <b>increase</b> borrowing from banks
+<b>understand</b> consumer behavior towards specific purchases. What people are wiling to change + ATM cluster locations
 </p>
