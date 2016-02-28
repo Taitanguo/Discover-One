@@ -3,7 +3,7 @@
 <p><b>To</b> Preserve distinct, local businesses, 
 <b>To</b> Create economic and social relationships, 
 <b>To</b> Push for local prosperity and a stronger community, 
-<b>To</b> Grow local commerce to benefit entire communities' welfare (money circulates locally instead of funnelled to corporations and cities), 
+<b>To</b> Grow local commerce to benefit entire communities' welfare (money circulates locally instead of funneled to corporations and cities), 
 <b>To</b> Grow specialized startups with quality products and with fewer overhead costs.
 </p>
 <p><b>CONSUMER</b></p>
