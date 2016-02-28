@@ -1,8 +1,5 @@
-# VTHacks
+# Discover One
 
-<b>Motto: DISCOVERY</b><br></br>
-
-<b>Objectives</b><br></br>
 <p><b>LOGIN</b> with first name, last name, password (blank)</p>
 <p><b>SHOW</b> Purchase History, Location, Distance</p>
 <p><b>SHOW</b> Google Map Multi Markers for all purchases</p>
