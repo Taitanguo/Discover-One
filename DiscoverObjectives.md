@@ -9,7 +9,7 @@
 <p><b>CONSUMER</b></p>
 <p><b>To</b> Reduce time spent on unproductive matters,
 <b>To</b> Increase quality of lifestyle,
-<b>To</b> Save money,
+<b>To</b> Save money.
 </p>
 <p><b>SOCIAL</b></p>
 <p><b>To</b> Reap Environmental benefits,
