@@ -1,0 +1,19 @@
+extends ../node_modules/jade-bootstrap/_bootstrap
+
+append styles
+	// Custom styles for this template
+	link(href='../node_modules/jade-bootstrap/css/signin.css', rel='stylesheet')
+block body
+	.container
+		form.form-signin
+			h2.form-signin-heading Please log in with your customer ID
+			label.sr-only(for='customer_id') Customer ID
+			input#customer_id.form-control(type='text', placeholder='i.e. 56c66be5a73e49274150738c', required='', autofocus='')
+			.checkbox
+				label
+					input(type='checkbox', value='remember-me')
+					|  Remember me
+			a(href='/map')
+				button.btn.btn-md.btn-primary.btn-block(type='button') Find Stores
+			a(href='/login')
+				button.btn.btn-md.btn-default.btn-block(type="button") Cancel
