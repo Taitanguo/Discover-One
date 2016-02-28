@@ -1,11 +1,13 @@
 // Module dependencies.
 var express = require('express');
-var bodyParser = require('body-parser');
 var request = require('request');
+var bodyParser = require('body-parser');
 var routes = require('./routes');
 var app = module.exports = express.createServer();
-//var names = [];
 
+// Reimagine API 
+var API_KEY = '5694198d923e293641faeb5cfb3ab2de';
+var host = 'http://api.reimaginebanking.com';
 
 // Configuration
 app.configure(function(){
@@ -26,42 +28,56 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
-// Reimagine API 
-var API_KEY = '5694198d923e293641faeb5cfb3ab2de';
-var customerIDs = ['56c66be5a73e49274150738c', '56c66be5a73e49274150738d', '56c66be5a73e49274150738e'];
-//var accountIDs = 
-var host = 'http://api.reimaginebanking.com'
+// customers fields: _id, last_name, address:{city, street_name, zip, state, street_number} first_name
+var customer_id = ''; //customer ID of accounts, i.e. 56c66be5a73e49274150738c
+var accounts = [];
+var purchases = [];
+var first_name = '';
+var last_name = '';
 
-var customers = [] // fields: _id, last_name, address:{city, street_name, zip, state, street_number} first_name
-var names = []
-var purchases = []
+//Request
+request({
+  url: host + '/customers?key=' + API_KEY,
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+}, function(error, response, body) {
+  if (error)
+    return console.log('Error:', error);
+  if (response.statusCode == 502)
+    return console.log('Invalid Status Code:', response.statusCode, 'Bad Gateway');
+  if (!first_name && !last_name)
+    return console.log('Name of customer not inputed!');
+
+});
 
 request({
-	url: host + '/customers/:id/accounts?key=' + API_KEY,
-	method: 'GET',
-	headers: {
-		'Content-Type': 'application/json'
-	}
-}, function(error, response, body) {
-	if (error)
-		return console.log('Error:', error);
-	if (response.statusCode == 502)
-		return console.log('Invalid Status Code:', response.statusCode, 'Bad Gateway');
-	customers = body;
-	console.log(customers);
+  url: host + '/customers/' + customer_id + '/accounts?key=' + API_KEY,
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+}, function(error, response, body){
+  if (error)
+    return console.log('Error:', error);
+  if (response.statusCode == 502)
+    return console.log('Invalid Status Code:', response.statusCode, 'Bad Gateway');
+  if (!customer_id)
+    return console.log('Customer ID not retrieved!');
 });
 
 // Routes
-app.get('/', function(req, res){
-	res.render('index', customers = customers);
+
+app.post('/', function(req, res){
+  first_name = 'Hayden'; //req.body.first_name;
+  last_name = 'Panettiere'; //req.body.last_name;
+  console.log('Hi', first_name, last_name);
+  res.end("yes");
 });
 
-app.post('/login',function(req,res){
-  var firstname = req.body.first_name;
-  var lastname = req.body.last_name;
-  
-  console.log("First name = "+firstname+", Last name is "+lastname+");
-  res.end("yes");
+app.get('/', function(req, res){
+  res.render('index');
 });
 
 app.listen(3000, function(){
