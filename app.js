@@ -1,7 +1,10 @@
 // Module dependencies.
 var express = require('express');
 var request = require('request');
+var http = require('http');
+var path = require('path');
 var bodyParser = require('body-parser');
+var cons = require('consolidate');
 var routes = require('./routes');
 var app = module.exports = express.createServer();
 
@@ -12,7 +15,8 @@ var host = 'http://api.reimaginebanking.com';
 // Configuration
 app.configure(function(){
   app.set('views', __dirname + '/views');
-  app.set('view engine', 'jade');
+  app.register('html', require('ejs').renderFile);
+  app.set('view engine', 'ejs');
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
@@ -67,6 +71,16 @@ request({
     return console.log('Customer ID not retrieved!');
 });
 
+// request({
+//   url: host + '/customers?key=' + API_KEY,
+//   method: 'POST',
+//   headers: {
+//     'Content-Type': 'application/json'
+//   },
+// }, function(error, response, body){
+//   console.log(JSON.stringify(req.body))
+// })
+
 // Routes
 
 app.post('/', function(req, res){
@@ -77,7 +91,7 @@ app.post('/', function(req, res){
 });
 
 app.get('/', function(req, res){
-  res.render('index');
+  res.render('login.html');
 });
 
 app.listen(3000, function(){
